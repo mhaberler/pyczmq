@@ -26,5 +26,20 @@ def test_zbeacon():
     assert received_port == port_nbr
     zframe.destroy(content)
 
+    # turn on unicast rx/tx
+    zbeacon.unicast(client_beacon, 1)
+
+    # send unicast UDP message to ourselves
+    zbeacon.send (service_beacon, ipaddress, "SELF");
+
+    fromaddress = zstr.recv(beacon_socket)
+    assert(fromaddress == ipaddress)
+
+    content = zstr.recv(beacon_socket)
+    assert(content == "SELF")
+
+    # turn off unicast rx/tx
+    zbeacon.unicast(beacon_socket, 0)
+
     del service_beacon
     del ctx
