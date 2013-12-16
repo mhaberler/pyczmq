@@ -212,7 +212,6 @@ int zsockopt_test (bool verbose);
 
 ipv6 = C.zsocket_ipv6
 ipv4only = C.zsocket_ipv4only
-probe_router = C.zsocket_probe_router
 plain_server = C.zsocket_plain_server
 plain_username = C.zsocket_plain_username
 plain_password = C.zsocket_plain_password
