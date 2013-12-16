@@ -52,11 +52,24 @@ def noecho(beacon):
     return C.zbeacon_noecho(beacon)
 
 
+@cdef('void zbeacon_unicast (zbeacon_t *self, int flag);')
+def unicast(beacon, flag):
+    """Start/stop listening on unicast packets
+    """
+    return C.zbeacon_unicast(beacon, flag)
+
+
+@cdef('void zbeacon_send (zbeacon_t *self,  char *ipaddress, void *transmit, size_t size);')
+def send(beacon, address, string):
+    """Send a frame directed to a particular unicast IP address once
+    """
+    return C.zbeacon_send(beacon, address, string, len(string))
+
+
 @cdef('void zbeacon_publish (zbeacon_t *self, void *transmit, size_t size);')
 def publish(beacon, string):
     """Start broadcasting beacon to peers at the specified interval"""
     return C.zbeacon_publish(beacon, string, len(string))
-
 
 @cdef('void zbeacon_silence (zbeacon_t *self);')
 def silence(beacon):
